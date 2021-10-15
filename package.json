@@ -1,0 +1,10 @@
+{
+  "name": "mod_kou_ecologi",
+  "version": "0.0.8",
+  "mainDirectory": "z:/xampp/htdocs/kindofuseful.com/downloads/joomla/",
+  "subDirectory": "modules/mod_kou_ecologi/",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-compress": "^1.5.0"
+  }
+}

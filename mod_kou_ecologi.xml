@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.5" client="site" method="upgrade">
+	<name>Square Balloon Logo</name>
+	<creationDate>28/06/2017</creationDate>
+	<author>Mary McGinty</author>
+	<authorEmail>info@kindofuseful.com</authorEmail>
+	<authorUrl>https://www.kindofuseful.com</authorUrl>
+	<copyright>Copyright Kind of Useful</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<version>0.0.1</version>
+	<description>MOD_KOU_ECOLOGI_XML_DESCRIPTION</description>
+
+	<files>
+		<filename module="mod_kou_ecologi">mod_kou_ecologi.php</filename>
+		<folder>tmpl</folder>
+		<folder>language</folder>
+		<filename>mod_kou_ecologi.xml</filename>
+	</files>
+
+	<!-- Update servers -->
+	<updateservers>
+		<server type="extension" priority="1" name="mod_kou_ecologi">https://www.kindofuseful.com/downloads/joomla/modules/mod_kou_ecologi/updates.xml</server>
+	</updateservers>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="ecologiUserName"
+					   type="text"
+					   label="MOD_KOU_ECOLOGI_ECOLOGI_USERNAME_LABEL"
+					   default="onionmarketingltdtasquareballoon"
+					   description="MOD_KOU_ECOLOGI_ECOLOGI_USERNAME_DESCRIPTION"
+				>
+				</field>
+				<field name="ecologiReferralLink"
+					   type="text"
+					   label="MOD_KOU_ECOLOGI_ECOLOGI_REFERRAL_NAME_LABEL"
+					   description="MOD_KOU_ECOLOGI_ECOLOGI_REFERRAL_NAME_DESCRIPTION"
+					   default="onionmarketingltdtasquareballoon"
+				>
+				</field>
+				<field name="endpoints"
+					   type="list"
+					   label="MOD_KOU_ECOLOGI_ENDPOINTS_LABEL"
+					   default="impact"
+					   description="MOD_KOU_ECOLOGI_ENDPOINTS_DESCRIPTION"
+				>
+					<option value="impact">MOD_KOU_ECOLOGI_ENDPOINTS_OPTION_TOTAL_IMPACT</option>
+					<option value="carbon-offset">MOD_KOU_ECOLOGI_ENDPOINTS_OPTION_CARBON_OFFSET</option>
+					<option value="trees">MOD_KOU_ECOLOGI_ENDPOINTS_OPTION_TOTAL_TREES</option>
+				</field>
+			</fieldset>
+			<fieldset
+					name="advanced">
+				<field
+						name="moduleclass_sfx"
+						type="text"
+						label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+						description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+			</fieldset>
+		</fields>
+	</config>
+</extension>
