@@ -10,6 +10,9 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Language\Text;
+
+
 $ecologiUserName        = $params->get('ecologiUserName');
 $ecologiEndPoint        = $params->get('endpoints');
 $ecologiReferralLink    = $params->get('ecologiReferralLink');
