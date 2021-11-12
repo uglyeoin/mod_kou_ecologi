@@ -42,8 +42,8 @@ else
 
 <div class="mod_kou_ecologi">
     <div id="ecologi">
-        <p>Trees in our forest so far: <span id="ecologiTrees"><?php echo $trees; ?></span></p>
-        <p>Total number of tonnes of CO2 emissions offset so far: <span id="ecologiCarbon"><?php echo $CO2OffsetSoFar; ?>t</span></p>
-        <p><a href="<?php echo $ecologiReferralLink; ?>>" target="_blank" class="button">Verify this information & see our forest</a></p>
+        <p><?php JText::_( 'MOD_KOU_ECOLOGI_ECOLOGI_TREES_IN_OUR_FOREST_SO_FAR'); ?><span id="ecologiTrees"><?php echo $trees; ?></span></p>
+        <p><?php JText::_( 'MOD_KOU_ECOLOGI_ECOLOGI_TREES_IN_OUR_TONNES_OF_CO2_EMMISSIONS_OFFSET_SO_FAR'); ?><span id="ecologiCarbon"><?php echo $CO2OffsetSoFar; ?>t</span></p>
+        <p><a href="<?php echo $ecologiReferralLink; ?>>" target="_blank" class="button"><?php JText::_( 'MOD_KOU_ECOLOGI_ECOLOGI_VERIFY_THIS_INFORMATION'); ?></a></p>
     </div>
 </div>
