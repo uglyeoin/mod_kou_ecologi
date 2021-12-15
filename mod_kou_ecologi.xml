@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="3.5" client="site" method="upgrade">
-	<name>Square Balloon Logo</name>
+	<name>Joomla Ecologi Module by Kind of Useful</name>
 	<creationDate>28/06/2017</creationDate>
 	<author>Mary McGinty</author>
 	<authorEmail>info@kindofuseful.com</authorEmail>
