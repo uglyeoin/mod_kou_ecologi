@@ -13,6 +13,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Language\Text;
 
 
+
 $ecologiUserName        = $params->get('ecologiUserName');
 $ecologiEndPoint        = $params->get('endpoints');
 $ecologiReferralLink    = $params->get('ecologiReferralLink');
@@ -45,8 +46,8 @@ else
 
 <div class="mod_kou_ecologi">
     <div id="ecologi">
-        <p><?php Text::_( 'MOD_KOU_ECOLOGI_ECOLOGI_TREES_IN_OUR_FOREST_SO_FAR'); ?><span id="ecologiTrees"><?php echo $trees; ?></span></p>
-        <p><?php Text::_( 'MOD_KOU_ECOLOGI_ECOLOGI_TREES_IN_OUR_TONNES_OF_CO2_EMMISSIONS_OFFSET_SO_FAR'); ?><span id="ecologiCarbon"><?php echo $CO2OffsetSoFar; ?>t</span></p>
-        <p><a href="<?php echo $ecologiReferralLink; ?>" target="_blank" class="button"><?php Text::_( 'MOD_KOU_ECOLOGI_ECOLOGI_VERIFY_THIS_INFORMATION'); ?></a></p>
+        <p><?php echo Text::_( 'MOD_KOU_ECOLOGI_ECOLOGI_TREES_IN_OUR_FOREST_SO_FAR'); ?><span id="ecologiTrees"><?php echo $trees; ?></span></p>
+        <p><?php echo Text::_( 'MOD_KOU_ECOLOGI_ECOLOGI_TREES_IN_OUR_TONNES_OF_CO2_EMMISSIONS_OFFSET_SO_FAR'); ?><span id="ecologiCarbon"><?php echo $CO2OffsetSoFar; ?>t</span></p>
+        <p><a href="<?php echo $ecologiReferralLink; ?>" target="_blank" class="button"><?php echo Text::_( 'MOD_KOU_ECOLOGI_ECOLOGI_VERIFY_THIS_INFORMATION'); ?></a></p>
     </div>
 </div>
