@@ -17,6 +17,11 @@
 		<filename>mod_kou_ecologi.xml</filename>
 	</files>
 
+	<languages>
+		<language tag="en-GB">language/en-GB/en-GB.mod_kou_ecologi.ini</language>
+		<language tag="en-GB">language/en-GB/en-GB.mod_kou_ecologi.sys.ini</language>
+	</languages>
+
 	<!-- Update servers -->
 	<updateservers>
 		<server type="extension" priority="1" name="mod_kou_ecologi">https://www.kindofuseful.com/downloads/joomla/modules/mod_kou_ecologi/updates.xml</server>
