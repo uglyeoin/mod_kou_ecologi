@@ -16,31 +16,35 @@ use Joomla\CMS\Language\Text;
 
 $ecologiUserName        = $params->get('ecologiUserName');
 $ecologiEndPoint        = $params->get('endpoints');
-$ecologiReferralLink    = $params->get('ecologiReferralLink');
 $ecologiBaseUrl         = "public.ecologi.com";
+$ecologiFullUrl         = "https://" . $ecologiBaseUrl . "/users/" . $ecologiUserName;
+$ecologiReferralLink    = $ecologiFullUrl . "?r=" . $ecologiUserName;
 
-
-$json = file_get_contents("https://" . $ecologiBaseUrl . "/users/" . $ecologiUserName . "/" . $ecologiEndPoint);
+$json = file_get_contents($ecologiFullUrl . "/" . $ecologiEndPoint);
 $data = json_decode($json,true);
 
-if($data['trees'])
+
+if($ecologiEndPoint == "impact")
 {
-    $trees = $data['trees'];
+    $dataVariable = "trees";
 }
 else
 {
-    echo "<script>console.log('Sorry there was an error, we couldn\'t find any trees)</script>";
+    $dataVariable = "total";
 }
 
-if($data['trees'])
+if($data[$dataVariable])
 {
-    $CO2OffsetSoFar = $data['carbonOffset'];
+    if($data[$dataVariable == "trees"])
+    {
+        $trees = $data['trees'];
+    }
+    else
+    {
+        $CO2OffsetSoFar = $data['total'];
+        $trees          = $data['total'];
+    }
 }
-else
-{
-    echo "<script>console.log('Sorry there was an error, we couldn\'t find any value for Carbon Offset)</script>";
-}
-
 
 ?>
 

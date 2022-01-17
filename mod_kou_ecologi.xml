@@ -37,13 +37,6 @@
 					   description="MOD_KOU_ECOLOGI_ECOLOGI_USERNAME_DESCRIPTION"
 				>
 				</field>
-				<field name="ecologiReferralLink"
-					   type="text"
-					   label="MOD_KOU_ECOLOGI_ECOLOGI_REFERRAL_NAME_LABEL"
-					   description="MOD_KOU_ECOLOGI_ECOLOGI_REFERRAL_NAME_DESCRIPTION"
-					   default="onionmarketingltdtasquareballoon"
-				>
-				</field>
 				<field name="endpoints"
 					   type="list"
 					   label="MOD_KOU_ECOLOGI_ENDPOINTS_LABEL"
