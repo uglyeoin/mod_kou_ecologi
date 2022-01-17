@@ -39,9 +39,12 @@ if($data[$dataVariable])
     {
         $trees = $data['trees'];
     }
-    else
+    elseif($data[$dataVariable == "carbon-offset"])
     {
         $CO2OffsetSoFar = $data['total'];
+    }
+    else
+    {
         $trees          = $data['total'];
     }
 }
