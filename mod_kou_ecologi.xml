@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="3.5" client="site" method="upgrade">
-	<name>Joomla Ecologi Module by Kind of Useful</name>
-	<creationDate>28/06/2017</creationDate>
-	<author>Mary McGinty</author>
-	<authorEmail>info@kindofuseful.com</authorEmail>
-	<authorUrl>https://www.kindofuseful.com</authorUrl>
-	<copyright>Copyright Kind of Useful</copyright>
+	<name>Joomla Ecologi Module by Square Balloon</name>
+	<creationDate>17/02/2022</creationDate>
+	<author>Eoin Oliver</author>
+	<authorEmail>eoin@squareballoon.co.uk</authorEmail>
+	<authorUrl>https://www.squareballoon.co.uk</authorUrl>
+	<copyright>Copyright Onion Marketing Ltd</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<version>0.0.9</version>
 	<description>MOD_KOU_ECOLOGI_XML_DESCRIPTION</description>
@@ -22,10 +22,6 @@
 		<language tag="en-GB">language/en-GB/en-GB.mod_kou_ecologi.sys.ini</language>
 	</languages>
 
-	<!-- Update servers -->
-	<updateservers>
-		<server type="extension" priority="1" name="mod_kou_ecologi">https://www.kindofuseful.com/downloads/joomla/modules/mod_kou_ecologi/updates.xml</server>
-	</updateservers>
 
 	<config>
 		<fields name="params">

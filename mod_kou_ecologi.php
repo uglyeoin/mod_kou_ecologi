@@ -2,10 +2,10 @@
 /**
  * @package    mod_kou_ecologi
  *
- * @author     Eoin <your@email.com>
- * @copyright  A copyright
+ * @author     Eoin Oliver <eoin@squareballoon.co.uk>
+ * @copyright  Onion Marketing Ltd
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
- * @link       http://your.url.com
+ * @link       https://www.squareballoon.co.uk
  */
 
 defined('_JEXEC') or die;
