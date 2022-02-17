@@ -2,10 +2,10 @@
 /**
  * @package    mod_kou_ecologi
  *
- * @author     Eoin Oliver <info@kindofuseful.com>
+ * @author     Eoin Oliver <eion@squareballoon.co.uk>
  * @copyright  Onion Marketing Ltd
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
- * @link       https://www.kindofuseful.com
+ * @link       https://squareballoon.co.uk
  */
 
 defined('_JEXEC') or die;
@@ -58,7 +58,7 @@ if($data[$dataVariable])
         <?php } ?>
         <?php if($ecologiEndPoint == "trees" OR "carbon-offset") { ?>
             <p><?php echo Text::_( 'MOD_KOU_ECOLOGI_ECOLOGI_TREES_IN_OUR_TONNES_OF_CO2_EMMISSIONS_OFFSET_SO_FAR'); ?><span id="ecologiCarbon"><?php echo $CO2OffsetSoFar; ?>t</span></p>
-        <? } ?>
+        <?php } ?>
         <p><a href="<?php echo $ecologiReferralLink; ?>" target="_blank" class="button"><?php echo Text::_( 'MOD_KOU_ECOLOGI_ECOLOGI_VERIFY_THIS_INFORMATION'); ?></a></p>
     </div>
 </div>
