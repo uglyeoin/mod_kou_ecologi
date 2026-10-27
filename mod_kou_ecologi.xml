@@ -1,56 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="3.5" client="site" method="upgrade">
-	<name>Joomla Ecologi Module by Square Balloon</name>
-	<creationDate>17/02/2022</creationDate>
-	<author>Eoin Oliver</author>
-	<authorEmail>eoin@squareballoon.co.uk</authorEmail>
-	<authorUrl>https://www.squareballoon.co.uk</authorUrl>
-	<copyright>Copyright Onion Marketing Ltd</copyright>
+<extension type="module" client="site" method="upgrade">
+	<name>mod_kou_ecologi</name>
+	<author>Kind of Useful</author>
+	<creationDate>2026-10</creationDate>
+	<copyright>(C) 2026 Kind of Useful. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
-	<version>0.0.9</version>
+	<authorEmail>eoin@squareballoon.co.uk</authorEmail>
+	<authorUrl>https://kindofuseful.com</authorUrl>
+	<version>2.0.0</version>
 	<description>MOD_KOU_ECOLOGI_XML_DESCRIPTION</description>
 
+	<namespace path="src">KindOfUseful\Module\Ecologi</namespace>
+	<!-- Bronze add-on: updates come through the ARS update stream, which checks the buyer's Download ID. -->
+	<dlid prefix="dlid=" suffix=""/>
+
+	<scriptfile>script.php</scriptfile>
+
 	<files>
-		<filename module="mod_kou_ecologi">mod_kou_ecologi.php</filename>
+		<folder module="mod_kou_ecologi">services</folder>
+		<folder>src</folder>
 		<folder>tmpl</folder>
 		<folder>language</folder>
-		<filename>mod_kou_ecologi.xml</filename>
 	</files>
 
-	<languages>
-		<language tag="en-GB">language/en-GB/en-GB.mod_kou_ecologi.ini</language>
-		<language tag="en-GB">language/en-GB/en-GB.mod_kou_ecologi.sys.ini</language>
-	</languages>
+	<media folder="media" destination="mod_kou_ecologi">
+		<folder>css</folder>
+		<folder>js</folder>
+		<filename>joomla.asset.json</filename>
+	</media>
 
+	<updateservers>
+		<server type="extension" priority="1" name="KOU Ecologi">https://kindofuseful.com/index.php?option=com_ars&amp;view=update&amp;task=stream&amp;format=xml&amp;id=22</server>
+	</updateservers>
 
 	<config>
 		<fields name="params">
 			<fieldset name="basic">
-				<field name="ecologiUserName"
-					   type="text"
-					   label="MOD_KOU_ECOLOGI_ECOLOGI_USERNAME_LABEL"
-					   default="onionmarketingltdtasquareballoon"
-					   description="MOD_KOU_ECOLOGI_ECOLOGI_USERNAME_DESCRIPTION"
-				>
+				<field
+					name="username"
+					type="text"
+					label="MOD_KOU_ECOLOGI_USERNAME_LABEL"
+					description="MOD_KOU_ECOLOGI_USERNAME_DESC"
+					hint="https://ecologi.com/yourname"
+					filter="string"
+				/>
+				<field name="show_trees" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_KOU_ECOLOGI_SHOW_TREES_LABEL" default="1" filter="integer">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
 				</field>
-				<field name="endpoints"
-					   type="list"
-					   label="MOD_KOU_ECOLOGI_ENDPOINTS_LABEL"
-					   default="impact"
-					   description="MOD_KOU_ECOLOGI_ENDPOINTS_DESCRIPTION"
-				>
-					<option value="impact">MOD_KOU_ECOLOGI_ENDPOINTS_OPTION_TOTAL_IMPACT</option>
-					<option value="carbon-offset">MOD_KOU_ECOLOGI_ENDPOINTS_OPTION_CARBON_OFFSET</option>
-					<option value="trees">MOD_KOU_ECOLOGI_ENDPOINTS_OPTION_TOTAL_TREES</option>
+				<field name="show_carbon" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_KOU_ECOLOGI_SHOW_CARBON_LABEL" default="1" filter="integer">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="show_removal" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_KOU_ECOLOGI_SHOW_REMOVAL_LABEL" default="0" filter="integer">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="show_habitat" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_KOU_ECOLOGI_SHOW_HABITAT_LABEL" default="0" filter="integer">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="hide_zero" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_KOU_ECOLOGI_HIDE_ZERO_LABEL" default="1" filter="integer">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="include_pending" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_KOU_ECOLOGI_PENDING_LABEL" description="MOD_KOU_ECOLOGI_PENDING_DESC" default="0" filter="integer">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="intro" type="text" label="MOD_KOU_ECOLOGI_INTRO_LABEL" hint="MOD_KOU_ECOLOGI_INTRO_HINT" filter="string"/>
+				<field name="show_link" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_KOU_ECOLOGI_SHOW_LINK_LABEL" default="1" filter="integer">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="link_text" type="text" label="MOD_KOU_ECOLOGI_LINK_TEXT_LABEL" hint="MOD_KOU_ECOLOGI_LINK_DEFAULT" filter="string" showon="show_link:1"/>
+				<field name="referral" type="text" label="MOD_KOU_ECOLOGI_REFERRAL_LABEL" description="MOD_KOU_ECOLOGI_REFERRAL_DESC" filter="string" showon="show_link:1"/>
+				<field name="new_tab" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_KOU_ECOLOGI_NEW_TAB_LABEL" default="1" filter="integer" showon="show_link:1">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
 				</field>
 			</fieldset>
-			<fieldset
-					name="advanced">
-				<field
-						name="moduleclass_sfx"
-						type="text"
-						label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
-						description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+
+			<fieldset name="style" label="MOD_KOU_ECOLOGI_FIELDSET_STYLE">
+				<field name="theme" type="list" label="MOD_KOU_ECOLOGI_THEME_LABEL" default="green">
+					<option value="green">MOD_KOU_ECOLOGI_THEME_GREEN</option>
+					<option value="light">MOD_KOU_ECOLOGI_THEME_LIGHT</option>
+					<option value="plain">MOD_KOU_ECOLOGI_THEME_PLAIN</option>
+				</field>
+				<field name="accent" type="color" label="MOD_KOU_ECOLOGI_ACCENT_LABEL" default="#1f7a4d"/>
+				<field name="align" type="list" label="MOD_KOU_ECOLOGI_ALIGN_LABEL" default="start">
+					<option value="start">MOD_KOU_ECOLOGI_ALIGN_START</option>
+					<option value="center">MOD_KOU_ECOLOGI_ALIGN_CENTER</option>
+					<option value="end">MOD_KOU_ECOLOGI_ALIGN_END</option>
+				</field>
+				<field name="show_icons" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_KOU_ECOLOGI_ICONS_LABEL" default="1" filter="integer">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="animate" type="radio" layout="joomla.form.field.radio.switcher" label="MOD_KOU_ECOLOGI_ANIMATE_LABEL" description="MOD_KOU_ECOLOGI_ANIMATE_DESC" default="0" filter="integer">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+			</fieldset>
+
+			<fieldset name="advanced">
+				<field name="layout" type="modulelayout" label="JFIELD_ALT_LAYOUT_LABEL" description="MOD_KOU_ECOLOGI_LAYOUT_DESC" class="form-select" validate="moduleLayout"/>
+				<field name="cache_hours" type="number" label="MOD_KOU_ECOLOGI_CACHE_LABEL" description="MOD_KOU_ECOLOGI_CACHE_DESC" default="6" min="1" max="168" filter="integer"/>
+				<field name="moduleclass_sfx" type="textarea" label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL" rows="3" validate="CssIdentifier"/>
 			</fieldset>
 		</fields>
 	</config>

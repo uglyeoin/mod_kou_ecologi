@@ -1,0 +1,79 @@
+/* KOU Ecologi. (C) 2026 Kind of Useful. GPL v2 or later. */
+.kou-eco {
+  --kou-eco-accent: #1f7a4d;
+  --kou-eco-bg: #eef7f1;
+  --kou-eco-text: inherit;
+  --kou-eco-radius: 0.75rem;
+  color: var(--kou-eco-text);
+}
+.kou-eco--plain { --kou-eco-bg: transparent; }
+.kou-eco--light { --kou-eco-bg: #fff; }
+.kou-eco--align-center { text-align: center; }
+.kou-eco--align-end { text-align: end; }
+
+.kou-eco-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 1rem;
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+.kou-eco-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--kou-eco-radius);
+  background: var(--kou-eco-bg);
+  border: 1px solid color-mix(in srgb, var(--kou-eco-accent) 25%, transparent);
+}
+.kou-eco--align-center .kou-eco-stat { align-items: center; }
+.kou-eco--align-end .kou-eco-stat { align-items: flex-end; }
+.kou-eco-icon {
+  width: 1.75rem;
+  height: 1.75rem;
+  fill: var(--kou-eco-accent);
+  flex: none;
+}
+.kou-eco-stat .kou-eco-value {
+  font-size: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--kou-eco-accent);
+  font-variant-numeric: tabular-nums;
+}
+.kou-eco-label { font-size: 0.95rem; }
+.kou-eco-link { margin: 0; }
+.kou-eco-link a, .kou-eco--sentence a { color: var(--kou-eco-accent); font-weight: 600; }
+
+.kou-eco-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.9rem 0.4rem 0.6rem;
+  border-radius: 999px;
+  background: var(--kou-eco-bg);
+  border: 1px solid color-mix(in srgb, var(--kou-eco-accent) 35%, transparent);
+  color: inherit;
+  text-decoration: none;
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+a.kou-eco-pill:hover, a.kou-eco-pill:focus-visible { border-color: var(--kou-eco-accent); }
+a.kou-eco-pill:focus-visible { outline: 2px solid var(--kou-eco-accent); outline-offset: 2px; }
+.kou-eco-pill .kou-eco-icon { width: 1.25rem; height: 1.25rem; }
+.kou-eco-pill .kou-eco-value { color: var(--kou-eco-accent); }
+.kou-eco-sep { margin: 0 0.35rem; opacity: 0.6; }
+.kou-eco-pill-by { margin-inline-start: 0.35rem; opacity: 0.8; }
+.kou-eco .visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}

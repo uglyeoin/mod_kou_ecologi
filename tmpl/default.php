@@ -1,64 +1,46 @@
 <?php
+
 /**
- * @package    mod_kou_ecologi
+ * @package     KindOfUseful.Module.Ecologi
  *
- * @author     Eoin Oliver <eoin@squareballoon.co.uk>
- * @copyright  Onion Marketing Ltd
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
- * @link       https://www.squareballoon.co.uk
+ * @copyright   (C) 2026 Kind of Useful. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ *
+ * Counters: one card per kind of impact, with a link to the Ecologi profile.
  */
 
-defined('_JEXEC') or die;
+\defined('_JEXEC') or die;
 
 use Joomla\CMS\Language\Text;
+use KindOfUseful\Module\Ecologi\Site\Helper\Icons;
 
+/** @var string $notice  from the Dispatcher */
+/** @var array  $stats */
 
+$e = static fn (string $s): string => htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
 
-$ecologiUserName        = $params->get('ecologiUserName');
-$ecologiEndPoint        = $params->get('endpoints');
-$ecologiBaseUrl         = "public.ecologi.com";
-$ecologiFullUrl         = "https://" . $ecologiBaseUrl . "/users/" . $ecologiUserName;
-$ecologiReferralLink    = $ecologiFullUrl . "?r=" . $ecologiUserName;
+if ($notice !== '') {
+    echo '<div class="alert alert-warning">' . $e($notice) . '</div>';
 
-$json = file_get_contents($ecologiFullUrl . "/" . $ecologiEndPoint);
-$data = json_decode($json,true);
-
-
-if($ecologiEndPoint == "impact")
-{
-    $dataVariable = "trees";
+    return;
 }
-else
-{
-    $dataVariable = "total";
-}
-
-if($data[$dataVariable])
-{
-    if($data[$dataVariable == "trees"])
-    {
-        $trees = $data['trees'];
-    }
-    elseif($data[$dataVariable == "carbon-offset"])
-    {
-        $CO2OffsetSoFar = $data['total'];
-    }
-    else
-    {
-        $trees          = $data['total'];
-    }
-}
-
 ?>
-
-<div class="mod_kou_ecologi">
-    <div id="ecologi">
-        <?php if($ecologiEndPoint == "trees" OR "impact") { ?>
-            <p><?php echo Text::_( 'MOD_KOU_ECOLOGI_ECOLOGI_TREES_IN_OUR_FOREST_SO_FAR'); ?><span id="ecologiTrees"><?php echo $trees; ?></span></p>
-        <?php } ?>
-        <?php if($ecologiEndPoint == "trees" OR "carbon-offset") { ?>
-            <p><?php echo Text::_( 'MOD_KOU_ECOLOGI_ECOLOGI_TREES_IN_OUR_TONNES_OF_CO2_EMMISSIONS_OFFSET_SO_FAR'); ?><span id="ecologiCarbon"><?php echo $CO2OffsetSoFar; ?>t</span></p>
-        <?php } ?>
-        <p><a href="<?php echo $ecologiReferralLink; ?>" target="_blank" class="button"><?php echo Text::_( 'MOD_KOU_ECOLOGI_ECOLOGI_VERIFY_THIS_INFORMATION'); ?></a></p>
-    </div>
+<div id="<?php echo $e($id); ?>" class="<?php echo $e($classes); ?> kou-eco--cards">
+    <?php if ($intro !== '') : ?>
+        <p class="kou-eco-intro"><?php echo $e($intro); ?></p>
+    <?php endif; ?>
+    <ul class="kou-eco-stats">
+        <?php foreach ($stats as $s) : ?>
+            <li class="kou-eco-stat kou-eco-stat--<?php echo $e($s['kind']); ?>">
+                <?php if ($showIcons) : ?>
+                    <svg class="kou-eco-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="<?php echo $e(Icons::PATHS[$s['kind']]); ?>"/></svg>
+                <?php endif; ?>
+                <span class="kou-eco-value"<?php echo $animate ? ' data-kou-eco-count="' . $e((string) $s['value']) . '" data-kou-eco-dp="' . (int) $s['dp'] . '"' : ''; ?>><?php echo $e($s['number']); ?></span><?php if ($s['unit'] !== '') : ?><span class="kou-eco-unit"><?php echo $e($s['unit']); ?></span><?php endif; ?>
+                <span class="kou-eco-label"><?php echo $e($s['label']); ?></span>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+    <?php if ($showLink) : ?>
+        <p class="kou-eco-link"><a href="<?php echo $e($profile); ?>"<?php echo $newTab ? ' target="_blank" rel="noopener"' : ''; ?>><?php echo $e($linkText); ?><?php if ($newTab) : ?><span class="visually-hidden"> <?php echo $e(Text::_('MOD_KOU_ECOLOGI_OPENS_NEW_TAB')); ?></span><?php endif; ?></a></p>
+    <?php endif; ?>
 </div>

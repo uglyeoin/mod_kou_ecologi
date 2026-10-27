@@ -1,0 +1,22 @@
+{
+  "$schema": "https://developer.joomla.org/schemas/json-schema/web_assets.json",
+  "name": "mod_kou_ecologi",
+  "version": "2.0.0",
+  "description": "KOU Ecologi",
+  "license": "GPL-2.0-or-later",
+  "assets": [
+    {
+      "name": "mod_kou_ecologi.ecologi",
+      "type": "style",
+      "uri": "mod_kou_ecologi/ecologi.css"
+    },
+    {
+      "name": "mod_kou_ecologi.count",
+      "type": "script",
+      "uri": "mod_kou_ecologi/count.js",
+      "attributes": {
+        "defer": true
+      }
+    }
+  ]
+}
