@@ -18,7 +18,8 @@ namespace KindOfUseful\Module\Ecologi\Site\Helper;
  *
  * A fresh copy is used as is. When it is out of date the service is asked again; if that
  * fails, the old copy is shown and the next try waits a few minutes, so a slow or broken
- * service never takes the page down with it. System → Clear Cache empties it.
+ * service never takes the page down with it. A failure with nothing to fall back on is
+ * remembered for the same few minutes. System → Clear Cache empties it.
  *
  * @since  2.0.0
  */
@@ -41,7 +42,7 @@ final class RemoteCache
         $cached = $this->read($file);
 
         if ($cached !== null && $cached['expires'] > time()) {
-            return ['data' => $cached['data'], 'error' => ''];
+            return ['data' => $cached['data'], 'error' => (string) ($cached['error'] ?? '')];
         }
 
         try {
@@ -50,9 +51,8 @@ final class RemoteCache
 
             return ['data' => $data, 'error' => ''];
         } catch (\RuntimeException $e) {
-            if ($cached !== null) {
-                $this->write($file, $cached['data'], time() + self::RETRY_AFTER);
-            }
+            // Keep the old copy (or remember the failure) and leave the service alone for a while.
+            $this->write($file, $cached['data'] ?? null, time() + self::RETRY_AFTER, $e->getMessage());
 
             return ['data' => $cached['data'] ?? null, 'error' => $e->getMessage()];
         }
@@ -69,7 +69,7 @@ final class RemoteCache
         return \is_array($json) && \array_key_exists('data', $json) ? $json + ['expires' => 0] : null;
     }
 
-    private function write(string $file, $data, int $expires): void
+    private function write(string $file, $data, int $expires, string $error = ''): void
     {
         if (!is_dir($this->folder) && !@mkdir($this->folder, 0755, true) && !is_dir($this->folder)) {
             return;
@@ -77,7 +77,7 @@ final class RemoteCache
 
         $tmp = $file . '.' . bin2hex(random_bytes(4));
 
-        if (@file_put_contents($tmp, json_encode(['expires' => $expires, 'data' => $data])) !== false) {
+        if (@file_put_contents($tmp, json_encode(['expires' => $expires, 'data' => $data, 'error' => $error])) !== false) {
             @rename($tmp, $file);
         }
 
