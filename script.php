@@ -69,6 +69,18 @@ return new class () implements InstallerScriptInterface {
             @unlink($file);
         }
 
+        // Old layouts that are not in this version (they used Joomla 3 code and would fail
+        // if chosen). Template overrides live in the template, so nothing of the owner's is lost.
+        $source = $parent->getParent()->getPath('source') . '/tmpl';
+
+        if (is_dir($source)) {
+            foreach (glob(JPATH_SITE . '/modules/' . self::ELEMENT . '/tmpl/*') ?: [] as $file) {
+                if (is_file($file) && !is_file($source . '/' . basename($file))) {
+                    @unlink($file);
+                }
+            }
+        }
+
         $this->migrateParams();
 
         return true;
